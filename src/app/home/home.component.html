@@ -1,0 +1,49 @@
+<nz-layout class="layout">
+  <div class="home_title">
+    <div class="home_title_1">
+      <img src="./assets/images/logo1.png">
+      <img src="./assets/images/logo2.png" style="position:relative;left: 5px;top:1px;">
+    </div>
+    <div class="home_title_2">
+      <nz-dropdown [hidden]="wallet_hidden" [nzPlacement]="'bottomRight'" [nzTrigger]="'click'">
+        <a nz-dropdown style="color: #ffffff;font-size: 18px">
+          打开钱包<i class="anticon anticon-down" style="margin-left: 10px"></i>
+        </a>
+        <ul nz-menu>
+          <li nz-menu-item>账户</li>
+          <li nz-menu-item class="length_more">{{myadd}}</li>
+          <li nz-menu-item ><span class="home_title_1-icon1"></span>BT <span class="home_title_2_number">{{mybalance}}</span></li>
+          <li nz-menu-item><i class="home_title_1-icon2"></i>交易 <span class="home_title_2_number">{{mynonce}}</span></li>
+          <li nz-menu-item (click)="send()"><i class="home_title_1-icon3"></i>发送</li>
+          <li nz-menu-item (click)="get()"><i class="home_title_1-icon4"></i>接收</li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item>
+            <button style="margin: 5px 0;" class="dropout" routerLink="/process" (click)="out_this()">退出</button>
+          </li>
+        </ul>
+      </nz-dropdown>
+      <nz-dropdown [hidden]="!wallet_hidden" [nzPlacement]="'bottomRight'" [nzTrigger]="'click'" [nzClickHide]="false"
+                   [(nzVisible)]="visible">
+        <a nz-dropdown style="color: #ffffff;font-size: 18px">
+          打开钱包<i class="anticon anticon-down" style="margin-left: 10px"></i>
+        </a>
+        <ul nz-menu style="width: 300px">
+          <li style="margin-top: 30px" nz-menu-item><input nz-input placeholder="请输入私钥" [(ngModel)]="iskey"></li>
+          <li style="margin-top: 15px" nz-menu-item><input nz-input type="password" placeholder="请输入密码"
+                                                           [(ngModel)]="ispwd"></li>
+          <li style="margin-top: 10px" nz-menu-item>
+            <button nz-button style="width: 100%;background-color:#80b139;color: #ffffff" (click)="login()">登录</button>
+          </li>
+          <li style="margin-top: 10px" nz-menu-divider></li>
+          <li (click)="close_this()" style="margin-top: 10px;margin-bottom: 10px" nz-menu-item>
+            <button nz-button style="width: 100%" nzType="primary">创建钱包</button>
+          </li>
+        </ul>
+      </nz-dropdown>
+    </div>
+  </div>
+  <nz-content style=" padding: 0px; min-height: 280px">
+    <router-outlet></router-outlet>
+  </nz-content>
+
+</nz-layout>

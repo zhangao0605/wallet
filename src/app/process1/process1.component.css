@@ -1,0 +1,108 @@
+.process {
+  margin: 0;
+  padding: 0;
+  height: 450px;
+  position: relative;
+  top: 40px;
+  width: 60%;
+  left: 20%;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(220, 220, 220, 1);
+}
+
+.process_con {
+  height: 100%;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 65px;
+}
+
+.process_1 {
+  margin-top: 64px;
+}
+
+.process_1_sou {
+  font-size: 14px;
+  color: rgba(74, 74, 74, 1);
+  line-height: 20px;
+  margin-top: 25px;
+}
+
+.process_2_down_key {
+  text-align: center;
+  width: 20%;
+  margin-left: 40%;
+  margin-top: -30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.process_2_down_key-icon {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url("../../assets/images/key.png") no-repeat;
+}
+
+.color_blue {
+  color: #0099EE;
+}
+
+.process_2_down_key_text {
+  position: relative;
+  top: -5px;
+  left: 5px;
+  font-size: 16px;
+}
+
+.process_2_warning {
+  margin-top: 40px;
+}
+
+.process_3_down_key_text {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.75);
+  margin-top: -30px;
+}
+
+.print {
+  height: 26px;
+  width: 26px;
+  font-size: 26px;
+  position: relative;
+  top: 3px;
+  left: 10px;
+  color: #2699EB;
+  cursor: pointer;
+}
+.process_4_success{
+  text-align: center;
+  margin-top: 80px;
+}
+.process_4_success_icon{
+  font-size: 20px;
+  color: #2699EB;
+  margin-right: 10px;
+  position: relative;
+  top:3px;
+}
+.Mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color:#00000026;
+  filter: Alpha(Opacity=60);
+  opacity: 0.6;
+  z-index: 1;
+
+}
+.loding{
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  margin-left: -28px;
+  margin-top: -28px;
+  z-index: 10;
+}

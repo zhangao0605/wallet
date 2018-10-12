@@ -1,0 +1,53 @@
+<div class="process">
+  <div class="process_con">
+    <nz-steps [nzCurrent]="current">
+      <nz-step nzTitle="新钱包" nzIcon="anticon anticon-wallet"></nz-step>
+      <nz-step nzTitle="保存私钥" nzIcon="anticon anticon-save"></nz-step>
+      <nz-step nzTitle="准备就绪" nzIcon="anticon anticon-lock"></nz-step>
+    </nz-steps>
+    <div class="process_1" [hidden]="process_1">
+      <input type="password" nz-input placeholder="请输入密码，请使用高强度的密码" [(ngModel)]="pwd">
+      <div class="process_1_sou">
+        此密码用于加密私钥，不作为生成私钥的种子，您需要使用此密码及私钥才能解锁钱包。
+      </div>
+      <button nz-button style="width: 100%;height: 40px;margin-top: 85px" nzType="primary" (click)="next(1)">下一步</button>
+    </div>
+    <div class="process_1" [hidden]="process_2">
+      <div class="process_2_down_key" (click)="downloadFlie()">
+        <span class="process_2_down_key-icon"></span><span class="color_blue process_2_down_key_text">下载秘钥</span>
+      </div>
+      <div class="process_2_warning">
+        <p><span class="color_blue">请制作备份！</span><span>以防您的电脑故障。</span></p>
+        <p><span class="color_blue">请勿遗失！</span><span>我们将无法帮助您找回遗失的密钥。</span></p>
+        <p><span class="color_blue">请勿向他人分享！</span><span>如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。</span></p>
+      </div>
+      <button nz-button style="width: 100%;height: 40px;margin-top: 15px" nzType="primary" (click)="next(2)">下一步</button>
+    </div>
+    <div class="process_1" [hidden]="process_3">
+      <div class="process_3_down_key">
+        <div class="process_3_down_key_text">这是您的私钥，请妥善保管</div>
+        <input style="margin-top: 10px;width: 50%" readonly nz-input [(ngModel)]="Privatekey">
+        <i (click)="openPage()" class="anticon anticon-printer print"></i>
+      </div>
+      <div class="process_2_warning">
+        <p><span class="color_blue">请制作备份！</span><span>以防您的电脑故障。</span></p>
+        <p><span class="color_blue">请勿遗失！</span><span>我们将无法帮助您找回遗失的密钥。</span></p>
+        <p><span class="color_blue">请勿向他人分享！</span><span>如在恶意网站使用此文件，您的资金可能面临被盗窃的风险。</span></p>
+      </div>
+      <button nz-button style="width: 100%;height: 40px;margin-top: 15px" nzType="primary" (click)="next(3)">下一步</button>
+    </div>
+    <div class="process_1" [hidden]="process_4">
+      <div class="process_4_success">
+        <i class="anticon anticon-check-circle process_4_success_icon" ></i>
+        <span>新钱包已经准备就绪</span>
+      </div>
+      <button nz-button style="width: 100%;height: 40px;margin-top:125px" nzType="primary" (click)="next(4)">开启钱包</button>
+    </div>
+  </div>
+</div>
+<div class="Mask" [hidden]="isOperating">
+  <ng-template #indicatorTemplate><i class="anticon anticon-spin anticon-loading" style="font-size: 64px;color: #1890ff;"></i>
+  </ng-template>
+  <nz-spin class="loding" [nzIndicator]="indicatorTemplate">
+  </nz-spin>
+</div>

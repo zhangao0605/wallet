@@ -1,0 +1,149 @@
+<div class="wallet">
+  <div class="wallet_title">
+    <div class="wallet_title_text">
+      账户
+    </div>
+    <div class="wallet_title_block">
+      <div class="block color_1">
+        <p class="block_title">余额</p>
+        <p class="block_con">{{data.account.balance}}</p>
+      </div>
+      <div class="block color_2">
+        <p class="block_title">名称</p>
+        <p class="block_con">-</p>
+      </div>
+      <div class="block color_3">
+        <p class="block_title">地址</p>
+        <p class="block_con_1" style="font-size: 12px;padding: 0 10px">{{my_address}}</p>
+      </div>
+      <div class="block color_4">
+        <p class="block_title">交易</p>
+        <p class="block_con">{{data.account.nonce}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="wallet_recording">
+    <div class="wallet_title_text">
+      交易
+    </div>
+    <div class="wallet_recording_con">
+      <nz-table #basicTable [nzShowPagination]="false" [nzData]="dataSet">
+        <thead>
+        <tr>
+          <th nzWidth="25%" class="color_gray">时间</th>
+          <th nzWidth="28%" class="color_gray">发送人</th>
+          <th nzWidth="28%" class="color_gray">接收人</th>
+          <th nzWidth="19%" class="color_gray">金额</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataSet">
+          <td style="text-align: center">{{data.theDateString}}</td>
+          <td class="text_al" (click)="seeDetial(data.from,data.id)">{{peoSlice(data.from)}}</td>
+          <td class="text_al" (click)="seeDetial(data.to,data.id)">{{peoSlice(data.to)}}</td>
+          <td style="text-align: center">{{data.value}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  <div [hidden]="detail" class="transactiondetails">
+    <div class="transactiondetails_1">
+      <div class="close_this" (click)="closedetail()">
+        x
+      </div>
+      <div class="transactiondetails_con_1">
+        <div class="transactiondetails_con_1_title">
+          <span class="transactiondetails_con_1_title_icon"></span>
+          交易
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">状态</span>
+          <span class="transactiondetails_con_1_other_text color_success">完成</span>
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">数额</span>
+          <span class="transactiondetails_con_1_other_text">{{details.value}}</span>
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">区块</span>
+          <span class="transactiondetails_con_1_other_text">{{details.txHeight}}</span>
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">时间</span>
+          <span class="transactiondetails_con_1_other_text">{{details.theDateString}}</span>
+        </div>
+      </div>
+      <div class="transactiondetails_con_1" style="margin-top: 20px">
+        <div class="transactiondetails_con_1_title">
+          <span class="transactiondetails_con_1_title_icon icon_1"></span>
+          合约
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">发送人</span>
+          <span class="transactiondetails_con_1_other_text">{{details.from}}</span>
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">接收人</span>
+          <span class="transactiondetails_con_1_other_text">{{details.to}}</span>
+        </div>
+
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">通证</span>
+          <span class="transactiondetails_con_1_other_text">BT</span>
+        </div>
+        <div class="transactiondetails_con_1_other">
+          <span class="transactiondetails_con_1_other_title">备注</span>
+          <span class="transactiondetails_con_1_other_text">{{details.remark}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="send" [hidden]="send">
+    <div class="send_title">
+      发送
+      <div class="close_send" (click)="close_send()">
+        x
+      </div>
+    </div>
+    <div class="send_con">
+      <div class="send_con_top"><span class="send_con_title">接收人:</span><input class="send_con_title_input" nz-input
+                                                                               placeholder="请输入接收人地址"
+                                                                               [(ngModel)]="send_address">
+      </div>
+      <div class="send_con_top"><span class="send_con_title">数额:</span><input type="number" min="1"
+                                                                              class="send_con_title_input" nz-input
+                                                                              placeholder="请输入数额"
+                                                                              [(ngModel)]="send_number">
+      </div>
+      <div class="send_con_top"><span class="send_con_title">备注:</span><input style="width: 70%;height: 40px"
+                                                                              class="send_con_title_input" nz-input
+                                                                              placeholder="请输入备注"
+                                                                              [(ngModel)]="send_say">
+      </div>
+    </div>
+    <div class="send_footer">
+      <button class="cancle" style="margin-right: 15px" (click)="close_send()">取消</button>
+      <button class="sure" (click)="sure_send()">发送</button>
+    </div>
+  </div>
+  <div class="receive" [hidden]="receive">
+    <div class="receive_title">
+      接收
+      <div class="close_receive" (click)="close_receive()">
+        x
+      </div>
+    </div>
+    <div class="receive_con">
+      <div class="receive_con_say">
+        请对以下地址转账
+      </div>
+      <div class="receive_con_show">
+        <input id="copy" class="receive_con_show_input" nz-input readonly [(ngModel)]="my_address">
+        <span class="copy" (click)="cope_input()"></span>
+      </div>
+    </div>
+  </div>
+  <div class="Mask" [hidden]="isOperating_1">
+  </div>
+</div>

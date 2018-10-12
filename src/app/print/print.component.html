@@ -1,0 +1,16 @@
+<div class="print">
+  <div class="print_con">
+    <div class="print_con_address">
+      <p class="title">Address</p>
+      <div class="ma_l">{{address}}</div>
+      <qr-code class="icon_1" [value]="address" size="70"  background="#ffffff" padding="0"></qr-code>
+    </div>
+    <div class="print_con_address mg_t">
+      <p class="title">Private key</p>
+      <div class="ma_l">{{key}}</div>
+      <qr-code class="icon_1" [value]="key" size="70"  background="#ffffff" padding="0"></qr-code>
+    </div>
+  </div>
+
+
+</div>
